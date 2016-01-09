@@ -31,4 +31,5 @@ define("TEXT_DONATE_CONFIRM","Confirm donation");
 define("TEXT_DONATE_CONFIRM_DESC","Please confirm payment to bitsmile.org");
 define("TEXT_PAYMENT_METHOD","Payment method:");
 define("TEXT_ERROR_INPUT","Please enter a valid amount and select a payment method.");
+define("TEXT_LATEST_TITLE","Latest donations:");
 ?>

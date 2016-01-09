@@ -5,14 +5,14 @@
  * sakr
  */
 require_once('includes/app.php');
- $response=array();
- if($_SERVER['REQUEST_METHOD']=='POST'){ 
- $response=createDonation($_POST['inputAmount'],$_POST['inputName'],$_POST['inputEmail']);
-// $response['success']=1;
-// $response['pubKey']='BNjihWGGrEZ4T1d4vRU7NiinGdaQr5R6iW';
-// $response['amount']='2';
-// $response['txid']='505ef86e512c392802e2179332635c4e415d8bf65e982a662ff9c50227875ad7';
- }
+$response=array();
+if($_SERVER['REQUEST_METHOD']=='POST'){ 
+	$response=createDonation($_POST['inputAmount'],$_POST['inputName'],$_POST['inputEmail']);
+	// $response['success']=1;
+	// $response['pubKey']='BNjihWGGrEZ4T1d4vRU7NiinGdaQr5R6iW';
+	// $response['amount']='2';
+	// $response['txid']='505ef86e512c392802e2179332635c4e415d8bf65e982a662ff9c50227875ad7';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,9 +46,6 @@ require_once('includes/app.php');
       </div>
     </nav>
  	<div class="container theme-showcase" role="main">
- 	<div class="alert alert-danger" id="invalidAmount" style="display:none;">
-  	
-	</div>
         <img class="center-block" src="images/logo.png">
         <h3 class="center-block text-center"><?=TEXT_DEMO_INTRO1?></h3>    
         <div class="row">
@@ -142,7 +139,35 @@ require_once('includes/app.php');
       </div>
       <div class="col-sm-4"></div>        
      </div> 
-     
+     <?php
+$last=getLast();
+?>
+     <div class="row">
+  	  <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+      <div class="panel panel-success">
+      		<div class="panel-heading">
+              <h3 class="panel-title"><?=TEXT_LATEST_TITLE?></h3>
+            </div>
+            <div class="panel-body">
+            <div class="list-group">
+          	<?php
+foreach($last as $k){
+	?>
+            <a target="_blank" href="<?=EXPLORER_URL.'/address/'.$k['pubKey']?>" class="list-group-item">
+            <div class="row">
+        	<div class="col-sm-10"><h6><span><?=$k['pubKey']?></span></h6></div>
+       		<div class="col-sm-2"><h6><span class="label label-info"><?=(int)$k['amount'].' ¥'?></span></h6></div>
+      		</div>            
+            </a>
+            <?php
+}
+?>
+          </div>
+      </div>   
+      </div>    
+      <div class="col-sm-4"></div>
+    </div>
 <div class="modal fade" tabindex="-1" role="dialog" id="successModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -190,14 +215,14 @@ require_once('includes/app.php');
 
    
     <?php
-    if($_SERVER['REQUEST_METHOD']=='POST'){ 
+if($_SERVER['REQUEST_METHOD']=='POST'){ 
 	if($response['success']==1){
-	echo "<script>$('#successModal').modal('show');</script>";	
+		echo "<script>$('#successModal').modal('show');</script>";	
 	}else{
-	echo "<script>$('#errorModal').modal('show');</script>";	
+		echo "<script>$('#errorModal').modal('show');</script>";	
 	}
-	}
-    ?>
+}
+?>
     
   </body>
 </html>

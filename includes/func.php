@@ -273,4 +273,11 @@ function createDonation($amount,$name,$email){
     }    
     return $ret;
 }	
+
+function getLast(){
+	$db = new dbclass;
+	$data = $db->select("select pubKey,amount from donations order by dateadded desc limit 20");
+	$db->close();
+	return $data;
+}
 ?>
