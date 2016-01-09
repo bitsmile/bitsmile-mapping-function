@@ -90,7 +90,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   				<input type="radio" name="paymentOption" id="inlineRadio4" value="citibank.png"><img src="images/citibank.png">
 				</label>
 				</div>
-  				<button type="button" class="btn btn-lg btn-success center-block" onclick="if($('#donateFrm')[0].checkValidity()){;$('#donationAmt').append($('#inputAmount').val()+' ¥');$('#imgPayment').attr('src','images/'+$('input[name=\'paymentOption\']:checked').val());$('#donateModal').modal('show');}else{$('#inputModal').modal('show');}"><?=TEXT_SUBMIT?></button>
+  				<button type="button" class="btn btn-lg btn-success center-block" onclick="if($('#donateFrm')[0].checkValidity()){;$('#donationAmt').html($('#inputAmount').val()+' ¥');$('#imgPayment').attr('src','images/'+$('input[name=\'paymentOption\']:checked').val());$('#donateModal').modal('show');}else{$('#inputModal').modal('show');}"><?=TEXT_SUBMIT?></button>
   				<div class="modal fade" tabindex="-1" role="dialog" id="donateModal">
  					<div class="modal-dialog">
    						 <div class="modal-content">
